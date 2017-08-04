@@ -5,7 +5,8 @@ class nginx (
     String $repository_url = "",
     String $repository_key_id = "",
 
-) inherits nginx::params {
+) inherits ::nginx::params {
     $package_name   = $::nginx::params::package_name
-    contain nginx::install
+    contain ::nginx::install
+    contain ::nginx::config
 }
