@@ -4,4 +4,5 @@ class nginx (
     $service_manage = $::nginx::params::service_manage,
 ) inherits nginx::params {
     $package_name   = $::nginx::params::package_name
+    contain nginx::install
 }
