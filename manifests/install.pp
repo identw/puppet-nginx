@@ -14,10 +14,8 @@ class nginx::install () inherits nginx {
         }
     }
     
-    if $package_name {
-        package { 'nginx':
+    package { $package_name:
             ensure  => installed,
             require => Apt::Source['ubuntu_nginx'],
-        }
     }
 }
