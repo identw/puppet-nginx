@@ -17,7 +17,6 @@ events
 
 http
 {
-
     ##
     # Basic Settings
     ##
@@ -51,18 +50,9 @@ http
     #
     # Caching FS
     #
-<% case $type { -%>
-<%      'LB': { -%>
     open_file_cache max=10000;
     open_file_cache_errors on;
-<%     } -%>
-<%     'CDN': { -%>
-    open_file_cache max=100000 inactive=5m;
-    open_file_cache_valid 2m;
-    open_file_cache_min_uses 1;
-    open_file_cache_errors on;
-<%     } -%>
-<% } -%>
+
 
     ##
     # Gzip Settings
