@@ -1,16 +1,22 @@
 class nginx::install () inherits nginx {
-    
-    apt::source { 'ubuntu_nginx':
-        location => 'http://nginx.org/packages/ubuntu/',
-        release  => $facts['os']['distro']['codename'],
-        repos    => 'nginx',
-        key      => {
-            'id'     => $apt_nginx_key_id,
-            'server' => 'keyserver.ubuntu.com',
-        },
-        include  => {
-            'src' => true,
-            'deb' => true,
+
+    if $repository_url != "" {
+        if $repository_key == "" {
+            fail('Parameter $repository_url require $repository_key')
+        }
+
+        apt::source { 'ubuntu_nginx':
+            location => $repository_url,
+            release  => $facts['os']['distro']['codename'],
+            repos    => 'nginx',
+            key      => {
+                'id'     => $repository_key,
+                'server' => 'keyserver.ubuntu.com',
+            },
+            include  => {
+                'src' => true,
+                'deb' => true,
+            }
         }
     }
     
