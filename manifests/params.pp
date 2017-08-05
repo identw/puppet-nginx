@@ -5,6 +5,22 @@ class nginx::params {
     
     $worker_processes = 8
     $default_conf = '/etc/nginx/sites-available/default.conf'
+    
+    # Logs settings
+    $access_file_log = false
+    $error_file_log = true
+    $access_file_log_format = '$remote_addr - $uri'
+    $access_syslog = false
+    $access_syslog_server = '127.0.0.1'
+    $access_syslog_log_format = ''
+   
+    
+    $locations = {
+        '/' => @(EOT)
+        set $location "default";
+        index index.html index.htm;
+        | EOT
+    }
 
     case $facts['os']['distro']['codename'] {
         'xenial': {
