@@ -10,18 +10,20 @@ class nginx::config () inherits nginx {
     
     file { '/etc/nginx/sites-available':
         ensure  => directory,
+        purge   => true,
+        recurse => true,
         owner   => 'root',
         group   => 'root',
         mode    => '0700',
-        require => Class['nginx::install'],
     }
     
     file { '/etc/nginx/sites-enabled':
-        ensure => directory,
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0700',
-        require => Class['nginx::install'],
+        ensure  => directory,
+        purge   => true,
+        recurse => true,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0700',
     }
     
     file { '/etc/nginx/conf.d':
@@ -31,7 +33,6 @@ class nginx::config () inherits nginx {
         mode    => '0700',
         recurse => true,
         purge   => true,
-        require => Class['nginx::install'],
     }
     
     file { '/etc/nginx/conf.d/status.conf':
@@ -40,8 +41,6 @@ class nginx::config () inherits nginx {
         group   => 'root',
         mode    => '0600',
         source  => 'puppet:///modules/nginx/status.conf',
-        #notify  => Service['nginx'],
-        require => Class['nginx::install'],
     }
     
     
@@ -64,7 +63,20 @@ class nginx::config () inherits nginx {
             File['/etc/nginx/conf.d'],
         
         ],
-      #  notify  => Service['nginx'],
+    }
+    
+    file { $default_conf:
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0600',
+        content => epp('nginx/default.conf.epp'),
+        require => File['/etc/nginx/sites-available'],
+    }
+    
+    file { '/etc/nginx/sites-enabled/default.conf':
+        ensure  => link,
+        target  => $default_conf,
+        require => File[$default_conf],
     }
     
 }
