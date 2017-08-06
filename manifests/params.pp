@@ -10,7 +10,7 @@ class nginx::params {
     $access_file_log = false
     $error_file_log = true
     $access_file_log_only_error = true
-    $access_file_log_format = '$remote_addr - $uri'
+    $access_file_log_format = ''
     $access_syslog = false
     $access_syslog_only_error = true
     $access_syslog_server = '127.0.0.1'
@@ -26,6 +26,7 @@ class nginx::params {
     
     # Upstream default
     $upstream = {}
+    $upstream_name = ''
 
     case $facts['os']['distro']['codename'] {
         'xenial': {
