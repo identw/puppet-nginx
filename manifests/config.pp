@@ -1,12 +1,10 @@
 class nginx::config () inherits nginx {
     
-    @file { '/var/www':
-        ensure => directory
-    }
-    
-    File <| title == "/var/www" |> {
-        require => Package['nginx'],
-    }
+    # if defined(File['/var/www']) == false {
+    #     file { '/var/www':
+    #         ensure => directory
+    #     }
+    # }
     
     file { '/etc/nginx/sites-available':
         ensure  => directory,

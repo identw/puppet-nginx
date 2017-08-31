@@ -15,6 +15,10 @@ class nginx::params {
     $access_syslog_only_error = true
     $access_syslog_server = '127.0.0.1'
     $access_syslog_log_format = ''
+    
+    $error_syslog = false
+    $error_syslog_tag = "nginx"
+    $error_syslog_server = '127.0.0.1'
    
     # Lcations default
     $locations = {

@@ -12,7 +12,10 @@ define nginx::vhost (
     Boolean $access_syslog              = $::nginx::params::access_syslog,
     Boolean $access_syslog_only_error   = $::nginx::params::access_syslog_only_error,
     String  $access_syslog_server       = $::nginx::params::access_syslog_server,
-    String $access_syslog_log_format    = $::nginx::params::access_syslog_log_format,
+    String  $access_syslog_log_format   = $::nginx::params::access_syslog_log_format,
+    Boolean $error_syslog               = $::nginx::params::error_syslog,
+    String  $error_syslog_server        = $::nginx::params::error_syslog_server,
+    String  $error_syslog_tag           = $::nginx::params::error_syslog_tag,
     Boolean $error_file_log             = $::nginx::params::error_file_log,
 
 ) {
@@ -49,6 +52,9 @@ define nginx::vhost (
                     access_syslog_server       => $access_syslog_server,
                     access_syslog_log_format   => $access_syslog_log_format,
                     error_file_log             => $error_file_log,
+                    error_syslog               => $error_syslog,
+                    error_syslog_server        => $error_syslog_server,
+                    error_syslog_tag           => $error_syslog_tag,
                 }
             ),
             notify  => Class['::nginx::service'],
