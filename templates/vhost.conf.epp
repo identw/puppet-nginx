@@ -2,6 +2,8 @@
     String $domain,
     String $domains,
     String $root,
+    String $ssl_certificate,
+    String $ssl_certificate_key,
     Hash $upstream,
     String $upstream_name,
     Hash $locations,
@@ -45,6 +47,15 @@ log_format syslog_<%= $domain %> '<%= $access_syslog_log_format -%>';
 server
 {
     listen 80;
+
+<% if $ssl_certificate != '' { -%>
+    # SSL
+    listen 443 ssl http2;
+    ssl_certificate <%= $ssl_certificate -%>;
+    ssl_certificate_key <%= $ssl_certificate_key -%>;
+<% } -%>
+
+
 
     server_name <%= $domains %>;
     root <%= $root %>;

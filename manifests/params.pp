@@ -28,6 +28,10 @@ class nginx::params {
         | EOT
     }
     
+    # Ssl
+    $ssl_certificate = ''
+    $ssl_certificate_key = ''
+    
     # Upstream default
     $upstream = {}
     $upstream_name = ''
