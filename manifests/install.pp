@@ -14,7 +14,7 @@ class nginx::install () inherits nginx {
                 'server' => 'keyserver.ubuntu.com',
             },
             include  => {
-                'src' => true,
+                'src' => $repository_src,
                 'deb' => true,
             }
         }

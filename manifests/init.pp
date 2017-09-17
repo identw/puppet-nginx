@@ -5,6 +5,7 @@ class nginx (
     $worker_processes         = $::nginx::params::worker_processes,
     String $repository_url    = "",
     String $repository_key_id = "",
+    Boolean $repository_src   = false,
 
 ) inherits ::nginx::params {
     $package_name   = $::nginx::params::package_name
