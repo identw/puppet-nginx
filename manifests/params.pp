@@ -36,6 +36,9 @@ class nginx::params {
     $upstream = {}
     $upstream_name = ''
 
+    # maps default
+    $maps = {}
+
     case $facts['os']['distro']['codename'] {
         'xenial': {
             $reload_nginx = "systemctl reload nginx.service"
