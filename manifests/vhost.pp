@@ -26,7 +26,7 @@ define nginx::vhost (
         fail('You must include the apache base class before using any nginx defined resources')
     }
     
-    if length($error_syslog_tag) > 32 {
+    if length($error_syslog_tag) > 32 and $ensure == 'present' {
         fail('Parameter error_syslog_tag must less or equal than 32')
     }
     
