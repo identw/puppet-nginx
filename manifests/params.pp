@@ -15,6 +15,7 @@ class nginx::params {
     $access_syslog_only_error = true
     $access_syslog_server = '127.0.0.1'
     $access_syslog_log_format = ''
+    $send_timeout = 2
     
     $error_syslog = false
     $error_syslog_tag = "nginx"
