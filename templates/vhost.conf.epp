@@ -47,7 +47,7 @@ upstream <%= $upstream_name_used %>
 
 <% } -%>
 <% if $proxy_cache_path != '' { -%>
-proxy_cache_path = <%= $proxy_cache_path -%>
+proxy_cache_path <%= $proxy_cache_path -%>
 
 <% }                            %>
 <% if $access_file_log_format != '' { -%>
