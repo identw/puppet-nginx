@@ -29,6 +29,8 @@ class nginx::params {
         | EOT
     }
     
+    # proxy
+    $proxy_cache_path = ''
     # Ssl
     $ssl_certificate = ''
     $ssl_certificate_key = ''

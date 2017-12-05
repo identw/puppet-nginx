@@ -4,6 +4,7 @@
     String $root,
     String $ssl_certificate,
     String $ssl_certificate_key,
+    String $proxy_cache_path,
     Hash $upstream,
     String $upstream_name,
     Hash $locations,
@@ -45,6 +46,10 @@ upstream <%= $upstream_name_used %>
 }
 
 <% } -%>
+<% if $proxy_cache_path != '' { -%>
+proxy_cache_path = <%= $proxy_cache_path -%>
+
+<% }                            %>
 <% if $access_file_log_format != '' { -%>
 log_format file_<%= $domain %> '<%= $access_file_log_format -%>';
 <% } -%>
