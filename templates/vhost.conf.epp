@@ -59,9 +59,11 @@ log_format syslog_<%= $domain %> '<%= $access_syslog_log_format -%>';
 
 server
 {
+    listen [::]:80;
     listen 80;
 <% if $ssl_certificate != '' { -%>
     # SSL
+    listen [::]:443; ssl http2;
     listen 443 ssl http2;
     ssl_certificate <%= $ssl_certificate -%>;
     ssl_certificate_key <%= $ssl_certificate_key -%>;
