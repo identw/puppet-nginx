@@ -54,7 +54,14 @@ class nginx::config () inherits nginx {
         owner   => 'root',
         group   => 'root',
         mode    => '0600',
-        content => epp('nginx/nginx.conf.epp', { worker_processes => $worker_processes, send_timeout => $send_timeout,} ),
+        content => epp('nginx/nginx.conf.epp', {
+            worker_processes          => $worker_processes,
+            send_timeout              => $send_timeout,
+            client_body_timeout       => $client_body_timeout,
+            client_header_timeout     => $client_header_timeout,
+            reset_timedout_connection => $reset_timedout_connection,
+            
+        }),
         require => [
             File['/etc/nginx/sites-available'],
             File['/etc/nginx/sites-enabled'],
