@@ -46,6 +46,8 @@ class nginx::params {
     $maps = {}
     
     $pre_custom_config = ''
+    
+    $log_formats = {}
 
     case $facts['os']['distro']['codename'] {
         'xenial': {

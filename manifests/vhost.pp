@@ -22,7 +22,8 @@ define nginx::vhost (
     String  $error_syslog_server        = $::nginx::params::error_syslog_server,
     String  $error_syslog_tag           = $::nginx::params::error_syslog_tag,
     Boolean $error_file_log             = $::nginx::params::error_file_log,
-    String $pre_custom_config           = $::nginx::params::pre_custom_config
+    String $pre_custom_config           = $::nginx::params::pre_custom_config,
+    Hash $log_formats                   = $::nginx::params::log_formats,
 
 ) {
     if ! defined(Class['nginx']) {
@@ -70,6 +71,7 @@ define nginx::vhost (
                     error_syslog_server        => $error_syslog_server,
                     error_syslog_tag           => $error_syslog_tag,
                     pre_custom_config          => $pre_custom_config,
+                    log_formats                => $log_formats,
                 }
             ),
             notify  => Class['::nginx::service'],
