@@ -72,10 +72,13 @@ server
 
     server_name <%= $domains %>;
     root <%= $root %>;
+<% if $pre_custom_config != '' { -%>
 
     ### Pre custom config ###
     <%= $pre_custom_config -%>
     ###
+    
+<% } -%>
 
     ###Logs
 <% if $access_file_log { -%>
