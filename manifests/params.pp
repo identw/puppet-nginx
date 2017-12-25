@@ -44,6 +44,8 @@ class nginx::params {
 
     # maps default
     $maps = {}
+    
+    $pre_custom_config = ''
 
     case $facts['os']['distro']['codename'] {
         'xenial': {
