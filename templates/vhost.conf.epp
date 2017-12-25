@@ -61,7 +61,7 @@ log_format syslog_<%= $domain %> '<%= $access_syslog_log_format -%>';
 
 <% if $log_formats != {} {           -%>
 <%     $log_formats.each |$f, $s | { -%>
-log_format <%= $f -%> '<%= $s -%>';
+log_format <%= $f %> '<%= $s %>';
 <%     }                             -%>
 <% }                                 -%>
 server
