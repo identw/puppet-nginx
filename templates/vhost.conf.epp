@@ -71,7 +71,7 @@ log_format <%= $f %> '<%= $s %>';
 <%= $custom_http_config           -%>
 ###
 
-<%                                -%>
+<%  }                             -%>
 server
 {
     listen [::]:80;
