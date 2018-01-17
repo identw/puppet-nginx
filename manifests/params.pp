@@ -46,6 +46,7 @@ class nginx::params {
     $maps = {}
     
     $pre_custom_config = ''
+    $custom_http_config = ''
     
     $log_formats = {}
 

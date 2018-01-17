@@ -23,6 +23,7 @@ define nginx::vhost (
     String  $error_syslog_tag           = $::nginx::params::error_syslog_tag,
     Boolean $error_file_log             = $::nginx::params::error_file_log,
     String $pre_custom_config           = $::nginx::params::pre_custom_config,
+    String $custom_http_config           = $::nginx::params::custom_http_config,
     Hash $log_formats                   = $::nginx::params::log_formats,
 
 ) {
@@ -71,6 +72,7 @@ define nginx::vhost (
                     error_syslog_server        => $error_syslog_server,
                     error_syslog_tag           => $error_syslog_tag,
                     pre_custom_config          => $pre_custom_config,
+                    custom_http_config         => $custom_http_config,
                     log_formats                => $log_formats,
                 }
             ),
