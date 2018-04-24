@@ -7,6 +7,7 @@ class nginx (
     String $client_body_timeout       = $::nginx::params::client_body_timeout,
     String $client_header_timeout     = $::nginx::params::client_header_timeout,
     String $reset_timedout_connection = $::nginx::params::reset_timedout_connection,
+    Boolean $stream                   = $::nginx::params::stream,
     String $repository_url            = "",
     String $repository_key_id         = "",
     Boolean $repository_src           = false,

@@ -70,4 +70,6 @@ class nginx::params {
             $status_nginx = "systemctl status nginx.service"
         }
     }
+
+    $stream = false
  }
