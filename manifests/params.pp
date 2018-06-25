@@ -14,6 +14,7 @@ class nginx::params {
     $access_syslog = false
     $access_syslog_only_error = true
     $access_syslog_server = '127.0.0.1'
+    $access_log_condition = 'if=$status_error'
     $access_syslog_log_format = ''
     $send_timeout = '2'
     $client_body_timeout = '10'
