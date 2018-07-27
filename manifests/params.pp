@@ -20,6 +20,7 @@ class nginx::params {
     $client_body_timeout = '10'
     $client_header_timeout = '10'
     $reset_timedout_connection = 'on'
+    $resolver = false
     
     $error_syslog = false
     $error_syslog_tag = "nginx"

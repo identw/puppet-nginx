@@ -60,6 +60,7 @@ class nginx::config () inherits nginx {
             client_body_timeout       => $client_body_timeout,
             client_header_timeout     => $client_header_timeout,
             reset_timedout_connection => $reset_timedout_connection,
+            resolver                  => $resolver,
             stream                    => $stream,
             
         }),
