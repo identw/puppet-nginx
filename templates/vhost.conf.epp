@@ -89,9 +89,11 @@ server
     server_name <%= $domains %>;
     root <%= $root %>;
 <% if $pre_custom_config != '' { -%>
-
+<%      $split_pre_custom_config = split($pre_custom_config, "\n")%>
     ### Pre custom config ###
-    <%= $pre_custom_config -%>
+<%      $split_pre_custom_config.each |$string| { %>
+    <%= $string -%>
+<%      }                                         %>
     ###
 
 <% } -%>
