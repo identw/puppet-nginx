@@ -1,6 +1,7 @@
 define nginx::vhost (
     String  $ensure                     = present,
     String  $domain                     = $title,
+    String  $conf_file                  = $domain,
     String  $domains                    = $domain,
     $root                               = undef,
     String $ssl_certificate             = $::nginx::params::ssl_certificate,
@@ -45,7 +46,7 @@ define nginx::vhost (
     
     if $ensure == present {
     
-        file { "/etc/nginx/sites-available/${domain}.conf":
+        file { "/etc/nginx/sites-available/${conf_file}.conf":
             owner   => 'root',
             group   => 'root',
             mode    => '0600',
@@ -81,19 +82,19 @@ define nginx::vhost (
             notify  => Class['::nginx::service'],
         }
     
-        file { "/etc/nginx/sites-enabled/${domain}.conf":
+        file { "/etc/nginx/sites-enabled/${conf_file}.conf":
             ensure  => link,
-            target  => "/etc/nginx/sites-available/${domain}.conf",
-            require => File["/etc/nginx/sites-available/${domain}.conf"],
+            target  => "/etc/nginx/sites-available/${conf_file}.conf",
+            require => File["/etc/nginx/sites-available/${conf_file}.conf"],
             notify  => Class['::nginx::service'],
         }
     } else {
-        file { "/etc/nginx/sites-available/${domain}.conf":
+        file { "/etc/nginx/sites-available/${conf_file}.conf":
             ensure  => absent,
             notify  => Class['::nginx::service'],
         }
     
-        file { "/etc/nginx/sites-enabled/${domain}.conf":
+        file { "/etc/nginx/sites-enabled/${conf_file}.conf":
             ensure  => absent,
             notify  => Class['::nginx::service'],
         }
