@@ -1,4 +1,6 @@
-class nginx::install () inherits nginx {
+class nginx::install (
+    String $architecture = 'amd64'
+) inherits nginx {
 
     if $repository_url != "" {
         if $repository_key_id == "" {
@@ -16,7 +18,8 @@ class nginx::install () inherits nginx {
             include  => {
                 'src' => $repository_src,
                 'deb' => true,
-            }
+            },
+            architecture => $architecture,
         }
 
         package { $package_name:
