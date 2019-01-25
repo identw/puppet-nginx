@@ -12,6 +12,7 @@ class nginx (
     String $repository_url             = "",
     String $repository_key_id          = "",
     Boolean $repository_src            = false,
+    Boolean $purge_configs             = $::nginx::params::purge_configs,
 
 ) inherits ::nginx::params {
     $package_name   = $::nginx::params::package_name

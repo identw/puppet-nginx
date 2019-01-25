@@ -5,6 +5,7 @@ class nginx::params {
     
     $worker_processes = 8
     $default_conf = '/etc/nginx/sites-available/default.conf'
+    $purge_configs = true
     
     # Logs settings
     $access_file_log = false

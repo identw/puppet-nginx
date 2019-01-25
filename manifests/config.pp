@@ -8,8 +8,8 @@ class nginx::config () inherits nginx {
     
     file { '/etc/nginx/sites-available':
         ensure  => directory,
-        purge   => true,
-        recurse => true,
+        purge   => $purge_configs,
+        recurse => $purge_configs,
         owner   => 'root',
         group   => 'root',
         mode    => '0700',
@@ -17,8 +17,8 @@ class nginx::config () inherits nginx {
     
     file { '/etc/nginx/sites-enabled':
         ensure  => directory,
-        purge   => true,
-        recurse => true,
+        purge   => $purge_configs,
+        recurse => $purge_configs,
         owner   => 'root',
         group   => 'root',
         mode    => '0700',
@@ -29,8 +29,8 @@ class nginx::config () inherits nginx {
         owner   => 'root',
         group   => 'root',
         mode    => '0700',
-        recurse => true,
-        purge   => true,
+        recurse => $purge_configs,
+        purge   => $purge_configs,
     }
     
     file { '/etc/nginx/conf.d/status.conf':
