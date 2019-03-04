@@ -101,7 +101,7 @@ server
     ###Logs
 <% if $access_file_log { -%>
     # Local logs
-    access_log /var/log/nginx/<%= $domain %>_access.log <% if $access_file_log_format != '' { -%> file_<%= $domain -%> <% } -%> <% if $access_file_log_only_error { %><%= $access_log_condition %><% } -%>;
+    access_log /var/log/nginx/<%= $domain %>_access.log <% if $access_file_log_format != '' { -%> file_<%= $domain -%> <% } -%> <% if $access_file_log_only_error { %> <%= $access_log_condition %><% } -%>;
 <% } -%>
 <% if $error_file_log { -%>
     error_log /var/log/nginx/<%= $domain %>_error.log;
