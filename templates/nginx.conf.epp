@@ -81,7 +81,7 @@ http
     ##
     map $status $status_error
     {
-            "~*^(2|3)"      0;
+            "~*^(1|2|3)"      0;
             default         1;
     }
 
