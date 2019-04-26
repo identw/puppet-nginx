@@ -12,6 +12,7 @@ class nginx::params {
     $error_file_log = true
     $access_file_log_only_error = true
     $access_file_log_format = ''
+    $access_file_log_format_params = ''
     $access_syslog = false
     $access_syslog_only_error = true
     $access_syslog_server = '127.0.0.1'

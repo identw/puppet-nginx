@@ -12,6 +12,7 @@
     Boolean $access_file_log,
     Boolean $access_file_log_only_error,
     String $access_file_log_format,
+    String $access_file_log_format_params,
     Boolean $access_syslog,
     String $access_log_condition,
     Boolean $access_syslog_only_error,
@@ -55,7 +56,7 @@ proxy_cache_path <%= $proxy_cache_path -%>
 
 <% }                            %>
 <% if $access_file_log_format != '' { -%>
-log_format file_<%= $domain %> '<%= $access_file_log_format -%>';
+log_format file_<%= $domain -%> <%= " ${access_file_log_format_params} " -%> '<%= $access_file_log_format -%>';
 <% } -%>
 <% if $access_syslog_log_format != '' { -%>
 log_format syslog_<%= $domain %> '<%= $access_syslog_log_format -%>';
