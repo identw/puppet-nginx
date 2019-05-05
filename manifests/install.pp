@@ -23,12 +23,12 @@ class nginx::install (
         }
 
         package { $package_name:
-            ensure  => installed,
+            ensure  => $nginx::package_ensure,
             require => Apt::Source['ubuntu_nginx'],
         }
     } else {
         package { $package_name:
-            ensure  => installed,
+            ensure  => $nginx::package_ensure,
         }
     }
 }

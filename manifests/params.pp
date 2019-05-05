@@ -1,5 +1,5 @@
 class nginx::params {
-    $package_ensure = present
+    $package_ensure = 'installed'
     $service_manage = true
     $package_name = "nginx"
     
