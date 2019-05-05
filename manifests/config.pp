@@ -33,15 +33,6 @@ class nginx::config () inherits nginx {
         purge   => $purge_configs,
     }
     
-    file { '/etc/nginx/conf.d/status.conf':
-        ensure  => file,
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0600',
-        source  => 'puppet:///modules/nginx/status.conf',
-    }
-    
-    
     file { '/etc/nginx/projects_custom_config':
         ensure  => directory,
         owner   => 'root',
