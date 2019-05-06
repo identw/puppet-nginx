@@ -7,7 +7,7 @@ class nginx::install (
         exec {'apt_update_before_install_nginx':
             command     => 'apt-get update',
             path        => ['/usr/bin', '/bin'],
-            unless      => "dpkg -s nginx | grep Version: ${nginx::package_ensure}",
+            onlyif      => "dpkg -s nginx | grep Version: ${nginx::package_ensure}",
             before      => Package[$package_name]
         }
     }
