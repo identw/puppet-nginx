@@ -10,8 +10,10 @@
     Hash $locations,
     Hash $maps,
     Boolean $access_file_log,
+    String $access_file_log_path           =  "/var/log/nginx/${domain}_access.log",
     Boolean $access_file_log_only_error,
     String $access_file_log_format,
+    String $access_file_log_format_name    = "file_${domain}",
     String $access_file_log_format_params,
     Boolean $access_syslog,
     String $access_log_condition,
@@ -22,6 +24,7 @@
     String $error_syslog_server,
     String $error_syslog_tag,
     Boolean $error_file_log,
+    String $error_file_log_path            =  "/var/log/nginx/${domain}_error.log",
     String $pre_custom_config,
     String $custom_http_config,
     Hash $log_formats,
@@ -56,7 +59,7 @@ proxy_cache_path <%= $proxy_cache_path -%>
 
 <% }                            %>
 <% if $access_file_log_format != '' { -%>
-log_format file_<%= $domain -%> <%= " ${access_file_log_format_params} " -%> '<%= $access_file_log_format -%>';
+log_format <%= $access_file_log_format_name -%> <%= " ${access_file_log_format_params} " -%> '<%= $access_file_log_format -%>';
 <% } -%>
 <% if $access_syslog_log_format != '' { -%>
 log_format syslog_<%= $domain %> '<%= $access_syslog_log_format -%>';
@@ -102,10 +105,10 @@ server
     ###Logs
 <% if $access_file_log { -%>
     # Local logs
-    access_log /var/log/nginx/<%= $domain %>_access.log <% if $access_file_log_format != '' { -%> file_<%= $domain -%> <% } -%> <% if $access_file_log_only_error { %> <%= $access_log_condition %><% } -%>;
+    access_log <%= $access_file_log_path %> <% if $access_file_log_format != '' { -%> <%= $access_file_log_format_name -%> <% } -%> <% if $access_file_log_only_error { %> <%= $access_log_condition %><% } -%>;
 <% } -%>
 <% if $error_file_log { -%>
-    error_log /var/log/nginx/<%= $domain %>_error.log;
+    error_log <%= $error_file_log_path %>;
 <% } -%>
 
 <% if $access_syslog or $error_syslog { -%>
