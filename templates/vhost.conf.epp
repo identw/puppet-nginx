@@ -48,6 +48,7 @@ map <%= $map %> {
 upstream <%= $upstream_name_used %>
 {
     ip_hash;
+    keepalive 32;
 <% $upstream.each |$server, $weight| { -%>
     server <%= $server %> weight=<%= $weight %>;
 <% } -%>
