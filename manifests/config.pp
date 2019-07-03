@@ -46,13 +46,15 @@ class nginx::config () inherits nginx {
         group   => 'root',
         mode    => '0600',
         content => epp('nginx/nginx.conf.epp', {
-            worker_processes          => $worker_processes,
-            send_timeout              => $send_timeout,
-            client_body_timeout       => $client_body_timeout,
-            client_header_timeout     => $client_header_timeout,
-            reset_timedout_connection => $reset_timedout_connection,
-            resolver                  => $resolver,
-            stream                    => $stream,
+            worker_processes              => $worker_processes,
+            send_timeout                  => $send_timeout,
+            client_body_timeout           => $client_body_timeout,
+            client_header_timeout         => $client_header_timeout,
+            reset_timedout_connection     => $reset_timedout_connection,
+            server_names_hash_bucket_size => $server_names_hash_bucket_size,
+            variables_hash_bucket_size    => $variables_hash_bucket_size,
+            resolver                      => $resolver,
+            stream                        => $stream,
             
         }),
         require => [
