@@ -3,7 +3,7 @@ class nginx::params {
     $service_manage = true
     $package_name = "nginx"
     
-    $worker_processes = 8
+    $worker_processes = $facts['processorcount']
     $default_conf = '/etc/nginx/sites-available/default.conf'
     $purge_configs = true
     
@@ -12,6 +12,23 @@ class nginx::params {
     $error_file_log = true
     $access_file_log_only_error = true
     $access_file_log_format = ''
+    $stream_access_file_log_format = to_json({
+        'IP'                       => '$remote_addr',
+        'TIME'                     => '$time_local',
+        'SESSION_TIME'             => '$session_time',
+        'UPSTREAM_ADDR'            => '$upstream_addr',
+        'UPSTREAM_CONNECT_TIME'    => '$upstream_connect_time',
+        'UPSTREAM_SESSION_TIME'    => '$upstream_session_time',
+        'UPSTREAM_FIRST_BYTE_TIME' => '$upstream_first_byte_time',
+        'UPSTREAM_BYTES_RECEIVED'  => '$upstream_bytes_received',
+        'UPSTREAM_BYTES_SENT'      => '$upstream_bytes_sent',
+        'STATUS'                   => '$status',
+        'BYTES_SENT'               => '$bytes_sent',
+        'BYTES_RECEIVED'           => '$bytes_received',
+        'CONNECTION'               => '$connection',
+        'PID'                      => '$pid'
+    })
+    $stream_access_file_log_format_params = 'escape=json'
     $access_file_log_format_params = ''
     $access_syslog = false
     $access_syslog_only_error = true
@@ -27,7 +44,8 @@ class nginx::params {
     $error_syslog = false
     $error_syslog_tag = "nginx"
     $error_syslog_server = '127.0.0.1'
-   
+
+    $stream_listen = '80'
     # Lcations default
     $locations = {
         '/' => @(EOT)

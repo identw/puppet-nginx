@@ -98,15 +98,26 @@ http
     ##
 
     include /etc/nginx/conf.d/*.conf;
-<% if ! $stream { -%>
     include /etc/nginx/sites-enabled/*;
-<% } -%>
 }
 <% if $stream { -%>
 stream {
     tcp_nodelay on;
-    resolver dns1.yandex.net dns2.yandex.net 8.8.8.8 8.8.4.4;\
+    resolver 8.8.8.8 8.8.4.4;
     resolver_timeout 5s;
+
+    ##
+    # Maps
+    ##
+    map $status $status_error
+    {
+            "~*^(1|2|3)"      0;
+            default         1;
+    }
+
+    ##
+    # Stream Configs
+    ##
     error_log /var/log/nginx/error.log;
     include /etc/nginx/streams-enabled/*;
 }
