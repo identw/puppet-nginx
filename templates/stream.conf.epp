@@ -37,7 +37,7 @@ log_format file_<%= $title %> <%= "${access_file_log_format_params} " -%>'<%= $a
 server {
     listen <%= $listen %>;
     proxy_connect_timeout 1s;
-    proxy_timeout 3s;
+    proxy_timeout 3600s;
     proxy_pass <%= $upstream_name_used -%>;
     
     ###Logs
