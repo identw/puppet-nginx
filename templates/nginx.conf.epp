@@ -60,6 +60,12 @@ http
     access_log off;
     error_log /var/log/nginx/error.log;
 
+    ##
+    # SSL
+    ##
+    ssl_session_cache   shared:SSL:20m;
+    ssl_session_timeout 30m;
+
     #
     # Caching FS
     #
