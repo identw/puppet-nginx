@@ -15,6 +15,7 @@ class nginx (
     Boolean $purge_configs                          = $::nginx::params::purge_configs,
     Optional[String] $server_names_hash_bucket_size = undef,
     Optional[String] $variables_hash_bucket_size    = undef,
+    Boolean $ssl_ticket                             = true,
 
 ) inherits ::nginx::params {
     $package_name   = $::nginx::params::package_name

@@ -40,7 +40,27 @@ class nginx::config () inherits nginx {
         mode    => '0700',
         require => File['/etc/nginx/conf.d'],
     }
-    
+
+    if $ssl_ticket {
+        $ssl_ticket_key = '/etc/nginx/ticket.key'
+
+        ensure_packages(['openssl'], {ensure => installed})
+
+        exec {'nginx_ssl_ticket_key':
+            command => "openssl rand 80 > ${ssl_ticket_key}; chmod 600 ${ssl_ticket_key}",
+            path    => ['/usr/bin', '/bin'],
+            creates => $ssl_ticket_key,
+            require => Package['openssl'],
+            before  => File['/etc/nginx/nginx.conf'],
+        }
+
+        file {$ssl_ticket_key:
+            ensure => file,
+            owner  => root,
+            mode   => '0600',
+        }
+    }
+
     file { '/etc/nginx/nginx.conf':
         owner   => 'root',
         group   => 'root',
@@ -55,6 +75,7 @@ class nginx::config () inherits nginx {
             variables_hash_bucket_size    => $variables_hash_bucket_size,
             resolver                      => $resolver,
             stream                        => $stream,
+            ssl_ticket                    => $ssl_ticket,
             
         }),
         require => [
