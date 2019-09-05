@@ -50,7 +50,7 @@ upstream <%= $upstream_name_used %>
     ip_hash;
     keepalive 32;
 <% $upstream.each |$server, $weight| { -%>
-    server <%= $server %> weight=<%= $weight %>;
+    server <%= $server %> weight=<%= $weight %> max_fails=50;
 <% } -%>
 }
 
