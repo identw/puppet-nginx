@@ -59,6 +59,10 @@ class nginx::params {
     # Ssl
     $ssl_certificate = ''
     $ssl_certificate_key = ''
+
+    $ssl_shared_memory   = '20m'
+    $ssl_session_timeout = '2h'
+
     
     # Upstream default
     $upstream = {}
