@@ -1,6 +1,6 @@
 define nginx::stream (
     String  $ensure                        = present,
-    Hash $upstream                         = $::nginx::params::upstream,
+    Variant[Hash, Tuple] $upstream         = $::nginx::params::upstream,
     String $upstream_name                  = $::nginx::params::upstream_name,
     Hash $maps                             = $::nginx::params::maps,
     Boolean $access_file_log               = $::nginx::params::access_file_log,
