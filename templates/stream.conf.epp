@@ -23,7 +23,7 @@
 <%     }                                                                                                         -%>
 upstream <%= $upstream_name_used %>
 {
-  <%- if $upstream =~ Hash { %>
+  <%- if $upstream =~ Hash { -%>
   hash $remote_addr consistent;
   <%- } %>
 <%- $upstream.each |$server, $weight| { -%>
@@ -32,7 +32,7 @@ upstream <%= $upstream_name_used %>
     <%- } elsif $weight =~ Hash { -%>
     <%-   $s = $weight -%>
   server <%= $s['ip'] %>:<%= $s['port'] %> <%= $s['options'] %>; # <%= $s['name'] %>
-    <%- } %>
+    <%- } -%>
 <%- } %>
 }
 <% } -%>
