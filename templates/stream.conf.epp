@@ -1,6 +1,6 @@
 <% |
   String $title,
-  Hash $upstream,
+  Variant[Hash, Tuple] $upstream,
   String $upstream_name,
   Hash $maps                            = {},
   Boolean $access_file_log,
