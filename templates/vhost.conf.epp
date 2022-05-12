@@ -25,6 +25,7 @@
     String $error_syslog_tag,
     Boolean $error_file_log,
     String $error_file_log_path            =  "/var/log/nginx/${domain}_error.log",
+    Boolean $log_enabled                   = true,
     String $pre_custom_config,
     String $custom_http_config,
     Hash $log_formats,
@@ -111,6 +112,7 @@ server
 <% } -%>
 
     ###Logs
+<% if $log_enabled { -%>
 <% if $access_file_log { -%>
     # Local logs
     access_log <%= $access_file_log_path %> <% if $access_file_log_format != '' { -%> <%= $access_file_log_format_name -%> <% } -%> <% if $access_file_log_only_error { %> <%= $access_log_condition %><% } -%>;
@@ -128,6 +130,10 @@ server
 <% } -%>
 <% if $error_syslog { -%>
     error_log syslog:server=<%= $error_syslog_server %>,tag=<%= $error_syslog_tag %>;
+<% } -%>
+<% } else { -%>
+    access_log off;
+    error_log /dev/null;
 <% } -%>
 
 <% $locations.each |$key, $val| { -%>
