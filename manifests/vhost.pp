@@ -35,6 +35,7 @@ define nginx::vhost (
     String $custom_http_config             = $::nginx::params::custom_http_config,
     Hash $log_formats                      = $::nginx::params::log_formats,
     Boolean $disable_80_port               = false,
+    Numeric $tls_port                      = 443,
 
 ) {
     if ! defined(Class['nginx']) {
@@ -93,6 +94,7 @@ define nginx::vhost (
                     custom_http_config            => $custom_http_config,
                     log_formats                   => $log_formats,
                     disable_80_port               => $disable_80_port,
+                    tls_port                      => $tls_port,
                 }
             ),
             notify  => Class['::nginx::service'],
