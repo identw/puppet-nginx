@@ -38,6 +38,7 @@ define nginx::vhost (
     Numeric $tls_port                      = 443,
     String $tls_address_v4                 = '0.0.0.0',
     String $tls_address_v6                 = '[::]',
+    Boolean $default_server                = false,
 
 ) {
     if ! defined(Class['nginx']) {
@@ -99,6 +100,7 @@ define nginx::vhost (
                     tls_port                      => $tls_port,
                     tls_address_v4                => $tls_address_v4,
                     tls_address_v6                => $tls_address_v6,
+                    default_server                => $default_server,
                 }
             ),
             notify  => Class['::nginx::service'],
