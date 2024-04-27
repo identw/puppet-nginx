@@ -2,6 +2,7 @@ class nginx (
     $package_ensure                                 = $nginx::params::package_ensure,
     $service_manage                                 = $nginx::params::service_manage,
     $default_conf                                   = $nginx::params::default_conf,
+    $default_conf_enable                            = true,
     $worker_processes                               = $nginx::params::worker_processes,
     Variant[Boolean, String] $resolver              = $nginx::params::resolver,
     String $send_timeout                            = $nginx::params::send_timeout,

@@ -86,39 +86,41 @@ class nginx::config () inherits nginx {
         
         ],
     }
-    
-    file { $default_conf:
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0600',
-        content => epp('nginx/default.conf.epp'),
-        require => File['/etc/nginx/sites-available'],
-    }
+    if $default_conf_enable {
+        file { $default_conf:
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0600',
+            content => epp('nginx/default.conf.epp'),
+            require => File['/etc/nginx/sites-available'],
+        }
 
-    if ! $stream {
         file { '/etc/nginx/sites-enabled/default.conf':
           ensure  => link,
           target  => $default_conf,
           require => File[$default_conf],
         }
     } else {
-        file { '/etc/nginx/streams-available':
-          ensure  => directory,
-          purge   => true,
-          recurse => true,
-          owner   => 'root',
-          group   => 'root',
-          mode    => '0700',
+        file { '/etc/nginx/sites-enabled/default.conf':
+          ensure  => absent,
         }
+    }
 
-        file { '/etc/nginx/streams-enabled':
-          ensure  => directory,
-          purge   => true,
-          recurse => true,
-          owner   => 'root',
-          group   => 'root',
-          mode    => '0700',
-        }
+    file { '/etc/nginx/streams-available':
+        ensure  => directory,
+        purge   => true,
+        recurse => true,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0700',
+    }
 
+    file { '/etc/nginx/streams-enabled':
+        ensure  => directory,
+        purge   => true,
+        recurse => true,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0700',
     }
 }
