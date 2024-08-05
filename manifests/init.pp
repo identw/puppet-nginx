@@ -19,7 +19,8 @@ class nginx (
     Boolean $ssl_ticket                             = false,
     String $ssl_shared_memory                       = $nginx::params::ssl_shared_memory,
     String $ssl_session_timeout                     = $nginx::params::ssl_session_timeout,
-    Boolean $openssl_cnf                            = false
+    Boolean $openssl_cnf                            = false,
+    String $toplevel_config                         = '',
 
 ) inherits ::nginx::params {
     $package_name   = $::nginx::params::package_name

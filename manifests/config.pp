@@ -78,6 +78,7 @@ class nginx::config () inherits nginx {
             ssl_ticket                    => $ssl_ticket,
             ssl_shared_memory             => $ssl_shared_memory,
             ssl_session_timeout           => $ssl_session_timeout,
+            toplevel_config               => $toplevel_config,
         }),
         require => [
             File['/etc/nginx/sites-available'],
