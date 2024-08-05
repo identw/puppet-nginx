@@ -20,7 +20,7 @@ user www-data;
 worker_processes <%= $worker_processes %>;
 worker_rlimit_nofile 65000;
 pid /var/run/nginx.pid;
-<% $toplevel_config -%>
+<%= $toplevel_config -%>
 
 events
 {
