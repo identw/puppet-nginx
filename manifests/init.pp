@@ -21,6 +21,7 @@ class nginx (
     String $ssl_session_timeout                     = $nginx::params::ssl_session_timeout,
     Boolean $openssl_cnf                            = false,
     String $toplevel_config                         = '',
+    Optional[Numeric] $map_hash_bucket_size         = undef,
 
 ) inherits ::nginx::params {
     $package_name   = $::nginx::params::package_name
