@@ -77,26 +77,10 @@ class nginx::params {
 
   $log_formats = {}
 
-  case $facts['os']['distro']['codename'] {
-    'focal': {
-      $reload_nginx = 'systemctl reload nginx.service'
-      $start_nginx = 'systemctl start nginx.service'
-      $stop_nginx = 'systemctl stop nginx.service'
-      $status_nginx = 'systemctl status nginx.service'
-    }
-    'trusty': {
-      $reload_nginx = 'service nginx reload'
-      $start_nginx = 'service nginx start'
-      $stop_nginx = 'service nginx stop'
-      $status_nginx = 'service nginx status'
-    }
-    default: {
-      $reload_nginx = 'systemctl reload nginx.service'
-      $start_nginx = 'systemctl start nginx.service'
-      $stop_nginx = 'systemctl stop nginx.service'
-      $status_nginx = 'systemctl status nginx.service'
-    }
-  }
+  $reload_nginx = 'systemctl reload nginx.service'
+  $start_nginx = 'systemctl start nginx.service'
+  $stop_nginx = 'systemctl stop nginx.service'
+  $status_nginx = 'systemctl status nginx.service'
 
   $stream = false
 }

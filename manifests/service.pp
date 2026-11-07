@@ -1,5 +1,8 @@
-class nginx::service () inherits nginx {
-
+# @summary
+#   Manages the Nginx service, including configuration testing and systemd integration.
+# @reload_nginx The command to reload the Nginx service.
+class nginx::service (
+) inherits nginx {
   if $nginx::service_manage == true {
     if $nginx::openssl_cnf {
       file { '/etc/systemd/system/nginx.service':
@@ -29,7 +32,7 @@ class nginx::service () inherits nginx {
     service { 'nginx':
       ensure  => running,
       enable  => true,
-      restart => $reload_nginx,
+      restart => $reload_command,
     }
   }
 }
