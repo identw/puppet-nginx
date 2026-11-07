@@ -1,5 +1,5 @@
 <% | 
-    Integer $worker_processes                       = 8,
+    String $worker_processes                        = 'auto',
     String $send_timeout                            = '2',
     String $client_body_timeout                     = '10',
     String $client_header_timeout                   = '10',

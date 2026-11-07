@@ -3,7 +3,7 @@ class nginx (
   $service_manage                                 = $nginx::params::service_manage,
   $default_conf                                   = $nginx::params::default_conf,
   $default_conf_enable                            = true,
-  $worker_processes                               = $nginx::params::worker_processes,
+  String $worker_processes                        = $nginx::params::worker_processes,
   Variant[Boolean, String] $resolver              = $nginx::params::resolver,
   String $send_timeout                            = $nginx::params::send_timeout,
   String $client_body_timeout                     = $nginx::params::client_body_timeout,

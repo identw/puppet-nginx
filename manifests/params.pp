@@ -3,7 +3,7 @@ class nginx::params {
   $service_manage = true
   $package_name = 'nginx'
 
-  $worker_processes = $facts['processors']['count']
+  $worker_processes = 'auto'
   $default_conf = '/etc/nginx/sites-available/default.conf'
   $purge_configs = true
 
