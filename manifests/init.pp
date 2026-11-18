@@ -23,6 +23,7 @@ class nginx (
   Boolean $openssl_cnf                            = false,
   String $toplevel_config                         = '',
   Optional[Numeric] $map_hash_bucket_size         = undef,
+  Boolean $http2_new_config                       = true,
 
 ) inherits nginx::params {
   $package_name   = $nginx::params::package_name

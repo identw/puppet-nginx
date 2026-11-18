@@ -47,6 +47,8 @@ define nginx::vhost (
     fail('You must include the apache base class before using any nginx defined resources')
   }
 
+  $http2_new_config = $nginx::http2_new_config
+
   if length($error_syslog_tag) > 32 and $ensure == 'present' {
     fail('Parameter error_syslog_tag must less or equal than 32')
   }
@@ -68,6 +70,7 @@ define nginx::vhost (
           domains                       => $domains,
           root                          => $vhost_root,
           http2                         => $http2,
+          http2_new_config              => $http2_new_config,
           ssl_certificate               => $ssl_certificate,
           ssl_certificate_key           => $ssl_certificate_key,
           ssl_protocols                 => $ssl_protocols,
